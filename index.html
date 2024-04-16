@@ -13,8 +13,8 @@
 
 <body>
   <div class="row justify-content-center mt-5">
+    <div class="justify-items-center  p-3">
 
-    <div class=" col-sm-4 justify-items-center  p-3">
       <h5 class="text-center">Escanear OCR</h5>
       <div id="sourceSelectPanel" class="form-control " style="display:none">
         <select id="sourceSelect" class="form-control select my-2" style="max-width:400px">
@@ -22,15 +22,13 @@
       </div>
 
       <div class="row text-center">
-        <video id="video" width="300" height="200"></video>
+        <video id="video" ></video>
       </div>
       <div class="row mx-5 my-3">
 
         <button class="btn btn-primary btn-sm rounded-3 mb-2" id="startButton">Encender camara</button>
         <button class="btn btn-light btn-sm rounded-3" id="resetButton">Reset</button>
-        
-  <label class="form-control form-label my-2">Serial recibido:</label>
-  <pre><code id="result"></code></pre>
+        <input id="result" class="form-control" placeholder="Serial recibido">        
       </div>
     </div>
   </div>

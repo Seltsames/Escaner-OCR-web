@@ -42,11 +42,11 @@ window.addEventListener('load', function () {
         codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
           if (result) {
             console.log(result)
-            document.getElementById('result').textContent = result.text
+            document.getElementById('result').value = result.text
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
             console.error(err)
-            document.getElementById('result').textContent = err
+            document.getElementById('result').value = err;
           }
         })
         console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
@@ -54,7 +54,7 @@ window.addEventListener('load', function () {
 
       document.getElementById('resetButton').addEventListener('click', () => {
         codeReader.reset()
-        document.getElementById('result').textContent = '';
+        document.getElementById('result').value = '';
         console.log('Reset.')
       })
 
