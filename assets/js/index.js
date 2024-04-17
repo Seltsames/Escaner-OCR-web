@@ -15,9 +15,11 @@ window.addEventListener('load', function () {
       const sourceSelect = document.getElementById('sourceSelect')
       selectedDeviceId = videoInputDevices[0].deviceId
       if (videoInputDevices.length >= 1) {
+        counter = 0
         videoInputDevices.forEach((element) => {
+          counter += 1
           const sourceOption = document.createElement('option')
-          sourceOption.text = element.label
+          sourceOption.text = "DEV "+counter+element.label
           beforeval = this.document.getElementById("loginput").value
           this.document.getElementById("loginput").value += beforeval+JSON.stringify(element)
           sourceOption.value = element.deviceId
