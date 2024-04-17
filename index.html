@@ -8,34 +8,75 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
 <body>
-  <div class="row justify-content-center mt-5">
-    <div class="justify-items-center  p-3">
-
-      <h5 class="text-center">Escanear OCR</h5>
-      <div id="sourceSelectPanel" class="form-control " style="display:none">
-        <select id="sourceSelect" class="form-control select my-2" style="max-width:400px">
+  <div class="row justify-content-center mt-1">
+    <div class=" col-md-8 justify-items-center  p-3">
+    
+      <div id="sourceSelectPanel" class="d-flex justify-content-center" style="display:none">
+        <select id="sourceSelect" class="form-control text-center select my-2" style="max-width:600px">
         </select>
       </div>
 
       <div class="row text-center">
-        <video id="video" ></video>
+        <video id="video" height="300"></video>
       </div>
       <div class="row mx-5 my-3">
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            &nbsp; Ultimos datos enviados : <span id="lasData"></span>
+          </div>
+        </div>
 
         <button class="btn btn-primary btn-sm rounded-3 mb-2" id="startButton">Encender camara</button>
-        <button class="btn btn-light btn-sm rounded-3" id="resetButton">Reset</button>
-        <input id="result" class="form-control" placeholder="Serial recibido">        
+        <button class="btn btn-warning btn-sm rounded-3 mb-2" id="resetButton">Reset</button>
+        <input id="result" class="form-control my-2" placeholder="Serial recibido">
+        <input id="desk" class="form-control my-2" placeholder="Numero de escritorio" type="number">
+
+        <select class="form-select" id="floor">
+          <option value="7">Piso 7</option>
+          <option value="13">Piso 13</option>
+          <option value="17">Piso 17</option>
+        </select>
+        <select class="form-select my-2" id="assettype">
+          <option value="ComboTM">Combo Teclado</option>
+          <option value="Monitor">Monitor</option>
+          <option value="Docking">Docking Station</option>
+          <option value="MonitorD">Monitor + Docking Station</option>
+        </select>
+        <button class="btn btn-success btn-sm rounded-3 mt-2" id="sendButton">Enviar</button>
+
+
+        </div>
+        </div>    
       </div>
     </div>
   </div>
 
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i id="icontoast" class=""></i>
+        <strong class="me-auto">&nbsp;  Assets API</strong>
+        <small>Status</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div id="Toastmessage" class="toast-body">
+      </div>
+    </div>
+  </div>
+
+
+
   <audio id="audioScaner" src="assets/sonido.mp3"></audio>
   <script type="text/javascript" src="https://unpkg.com/@zxing/browser@latest"></script>
   <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="assets/js/index.js"></script>
 </body>
 

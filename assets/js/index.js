@@ -63,3 +63,44 @@ window.addEventListener('load', function () {
       console.error(err)
     })
 })
+
+url = "https://script.google.com/macros/s/AKfycbyOWl8_-HfeIeHYBtfVSkcOGnXlN9Kn9KfjIE0dyAF2EPCURwgyBeU1Fth5QRkb0ofYQw/exec"
+
+const toastLiveExample = document.getElementById('liveToast')
+const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+
+async function EnviarForm(){
+
+  let Serial = document.getElementById("result").value
+  let Desk = document.getElementById("desk").value
+  let Floor = document.getElementById("floor").value
+  let Type = document.getElementById("assettype").value
+  console.log(Serial,Desk,Floor,Type)
+  urlsend = url+"?serialn="+Serial+"&estacionn="+Desk+"&piso="+Floor
+
+
+  document.getElementById('sendButton').disabled = true 
+  try {
+    const response = await fetch(urlsend, {method: "POST",mode: "no-cors"});
+    console.log("Success:", response.status);
+
+    document.getElementById('icontoast').className = "bi bi-check-circle-fill" 
+    document.getElementById('Toastmessage').innerHTML = "Datos agregados correctamente "
+    document.getElementById('lasData').innerHTML = "SN ="+Serial+" Desk ="+Desk+" Floor ="+Floor
+    document.getElementById('sendButton').disabled = false
+    toastBootstrap.show()
+  } catch (error) {
+    console.error("Error:", error);
+    document.getElementById('icontoast').className = "bi bi-x-circle-fill"
+    document.getElementById('Toastmessage').innerHTML = "Ha ocurrido un error "+error 
+    document.getElementById('sendButton').disabled = false
+    toastBootstrap.show()
+  }
+
+}
+
+
+document.getElementById('sendButton').addEventListener('click', () => {
+  EnviarForm();
+})
+
