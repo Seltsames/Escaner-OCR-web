@@ -1,23 +1,17 @@
 
 const video = document.createElement("video");
 
-const encenderCamara = () => {
-  navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: "environment" } })
-    .then(function (stream) {
-      scanning = true;
-      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.srcObject = stream;
-      video.play();
-      console.log("camara encendida")
-    });
-};
-encenderCamara();
+
+const activarSonido = () => {
+  var audio = document.getElementById('audioScaner');
+  audio.play();
+}
 
 window.addEventListener('load', function () {
   let selectedDeviceId;
   const codeReader = new ZXing.BrowserMultiFormatReader()
   console.log('ZXing code reader initialized')
+
   codeReader.listVideoInputDevices()
     .then((videoInputDevices) => {
       const sourceSelect = document.getElementById('sourceSelect')
@@ -42,6 +36,7 @@ window.addEventListener('load', function () {
         codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
           if (result) {
             console.log(result)
+            activarSonido();
             document.getElementById('result').value = result.text
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
