@@ -8,14 +8,16 @@ window.addEventListener('load', function () {
   const codeReader = new ZXing.BrowserMultiFormatReader()
   console.log('ZXing code reader initialized')
 
-  codeReader.listVideoInputDevices()
+
+
+  this.navigator.mediaDevices.enumerateDevices()
     .then((videoInputDevices) => {
       const sourceSelect = document.getElementById('sourceSelect')
       selectedDeviceId = videoInputDevices[0].deviceId
       if (videoInputDevices.length >= 1) {
         videoInputDevices.forEach((element) => {
           const sourceOption = document.createElement('option')
-          sourceOption.text = "Camara de video"
+          sourceOption.text = element.label
           beforeval = this.document.getElementById("loginput").value
           this.document.getElementById("loginput").value += beforeval+JSON.stringify(element)
           sourceOption.value = element.deviceId
