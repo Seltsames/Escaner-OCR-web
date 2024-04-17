@@ -1,7 +1,3 @@
-
-const video = document.createElement("video");
-
-
 const activarSonido = () => {
   var audio = document.getElementById('audioScaner');
   audio.play();
@@ -19,7 +15,9 @@ window.addEventListener('load', function () {
       if (videoInputDevices.length >= 1) {
         videoInputDevices.forEach((element) => {
           const sourceOption = document.createElement('option')
-          sourceOption.text = element.label
+          sourceOption.text = "Camara de video"
+          beforeval = this.document.getElementById("loginput").value
+          this.document.getElementById("loginput").value += beforeval+JSON.stringify(element)
           sourceOption.value = element.deviceId
           sourceSelect.appendChild(sourceOption)
         })
